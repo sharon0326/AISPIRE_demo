@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISPIRE - AI-Driven Essays for Top US Colleges</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
+            <span>AISPIRE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" class="active">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+            <a href="#pricing">Pricing</a>
+            <a href="{{ url_for('register') }}" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    <main class="hero">
+        <div class="hero-content">
+            <h1>Your Story, Perfected</h1>
+            <p class="subtitle">AI-Driven Essays for Top US Colleges.</p>
+            <p class="description">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do 
+                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut 
+                enim ad minim veniam, quis nostrud exercitation ullamco laboris 
+                nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <a href="try-now.html" class="try-now-btn">Try Now</a>
+        </div>
+        <div class="hero-image">
+            <img src="{{ url_for('static', filename='assets/Devices/MacBook Pro.png') }}" alt="Essay Writing Interface">
+        </div>
+    </main>
+
+    <section class="why-us">
+        <h2>Why Us?</h2>
+        <div class="features-grid">
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Check" class="check-icon">
+                <div class="feature-text">
+                    <h3>Personalized Essays</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Check" class="check-icon">
+                <div class="feature-text">
+                    <h3>Top College Acceptance</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Check" class="check-icon">
+                <div class="feature-text">
+                    <h3>24/7 AI Assistance</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+            <div class="feature">
+                <img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Check" class="check-icon">
+                <div class="feature-text">
+                    <h3>Professional Review</h3>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="pricing" class="pricing">
+        <h2>Choose Your Plan</h2>
+        <div class="pricing-cards">
+            <div class="pricing-card">
+                <h3>Basic</h3>
+                <div class="price">$5<span>/month</span></div>
+                <p>A budget-friendly option for individuals and small businesses.</p>
+                <button class="get-started-btn">Get Started</button>
+                <div class="pricing-features">
+                    <h4>Features</h4>
+                    <ul>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Advance</h3>
+                <div class="price">$5<span>/month</span></div>
+                <p>A budget-friendly option for individuals and small businesses.</p>
+                <button class="get-started-btn">Get Started</button>
+                <div class="pricing-features">
+                    <h4>Features</h4>
+                    <ul>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="pricing-card">
+                <h3>Professional</h3>
+                <div class="price">$5<span>/month</span></div>
+                <p>A budget-friendly option for individuals and small businesses.</p>
+                <button class="get-started-btn">Get Started</button>
+                <div class="pricing-features">
+                    <h4>Features</h4>
+                    <ul>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="testimonials">
+        <div class="testimonials-grid">
+            <div class="testimonial-row">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>ChiChi</h3>
+                            <p>South Africa</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>Queen Rita</h3>
+                            <p>USA</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>Gloria Uko</h3>
+                            <p>Nigeria</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+            </div>
+
+            <div class="testimonial-row">
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>ChiChi</h3>
+                            <p>South Africa</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>Queen Rita</h3>
+                            <p>USA</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar"></div>
+                        <div class="testimonial-author">
+                            <h3>Gloria Uko</h3>
+                            <p>Nigeria</p>
+                        </div>
+                        <div class="quote-icon">"</div>
+                    </div>
+                    <p class="testimonial-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
+                    <span>AISPIRE</span>
+                </div>
+                <p class="footer-address">88/89 Peter Odili Road, Port<br>New York City, New York.</p>
+            </div>
+            
+            <div class="footer-links">
+                <div class="footer-links-column">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Register</a>
+                </div>
+                
+                <div class="footer-links-column">
+                    <a href="#">Services</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                
+                <div class="footer-links-column">
+                    <a href="#">Connect With Us</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-copyright">
+            <p>© AISPIRE. All right reserved. Designed by AISPIRE</p>
+        </div>
+    </footer>
+</body>
+</html>

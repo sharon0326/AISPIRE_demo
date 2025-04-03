@@ -1,0 +1,1327 @@
+/* General Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* Typography */
+body {
+    font-family: 'Mulish', 'Hiragino Kaku Gothic Std', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 30%, #125AFF 70%, #125AFF 100%);
+    background-attachment: fixed;
+    background-size: 100% 100vh;
+    color: #1a1a1a;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Gradient removed as requested */
+
+p {
+    font-weight: 300;
+    color: #666;
+}
+  
+  /* Header */
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 4rem;
+    background-color: white;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: #125AFF;
+}
+  
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #125AFF;
+    font-weight: 300;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: #0044ff;
+}
+
+.register-btn {
+    background-color: #125AFF;
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+    font-weight: 300;
+}
+
+.register-btn:hover {
+    background-color: #0044ff;
+}
+  
+  /* Hero Section */
+  .hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rem 0 5rem 4rem;
+    max-width: 100%;
+    margin: 0;
+    gap: 0;
+    position: relative;
+    overflow: hidden;
+    background: white;
+}
+
+
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 10%;
+    left: -5%;
+    width: 200px;
+    height: 200px;
+    background: linear-gradient(135deg, #49BBF0 0%, #125AFF 100%);
+    border-radius: 50%;
+    z-index: 0;
+    opacity: 0.1;
+    filter: blur(5px);
+}
+
+.hero-content {
+    flex: 0 0 50%;
+    max-width: 550px;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+    font-weight: 300;
+}
+
+.subtitle {
+    font-size: 1.8rem;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.2;
+}
+
+.description {
+    color: #666;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+    max-width: 600px;
+}
+  
+  .try-now-btn {
+    background-color: #125AFF;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-weight: 300;
+}
+
+.try-now-btn:hover {
+    background-color: #0044ff;
+}
+
+.hero-image {
+    flex: 0 0 50%;
+    display: flex;
+    justify-content: flex-end;
+    position: relative;
+    right: -100px;
+}
+
+.hero-image img {
+    max-width: 110%;
+    height: auto;
+    object-fit: contain;
+}
+  
+  /* Why Us */
+  
+
+/* Blue gradient sections */
+
+.why-us {
+    padding: 4rem;
+    text-align: center;
+    background-color: white;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+    margin-bottom: 0;
+    width: 100%;
+  }
+  
+  .why-us::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 350px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 0 0 80% 0;
+    z-index: 0;
+  }
+  
+  .why-us::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 350px;
+    height: 350px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 80% 0 0 0;
+    z-index: 0;
+  }
+  
+  .why-us h2 {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 1;
+    font-weight: 300;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    padding: 0 2rem;
+}
+
+.feature {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.check-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 1rem;
+    flex-shrink: 0;
+}
+
+.feature-text h3 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.2rem;
+    color: #125AFF;
+    font-weight: 300;
+}
+
+.feature-text p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+    font-weight: 300;
+}
+  
+  /* Plans */
+  .plans {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 60px 40px;
+  }
+  
+  .plan {
+    background-color: white;
+    border-radius: 8px;
+    padding: 20px;
+    width: 240px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .plan .price {
+    font-size: 24px;
+    font-weight: bold;
+    color: #0047ff;
+  }
+  
+  .get-started {
+    background: #0047ff;
+    color: white;
+    padding: 10px;
+    margin: 10px 0;
+    text-align: center;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  
+  .features {
+    list-style: none;
+    padding-left: 0;
+  }
+  
+  .features li {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  
+  /* Testimonials */
+  .testimonials {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 40px;
+  }
+  
+  .testimonial {
+    background: white;
+    padding: 16px;
+    border-radius: 8px;
+    width: 240px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Pricing Section */
+.pricing {
+  padding: 5rem 4rem;
+  text-align: center;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.pricing h2 {
+  font-size: 3rem;
+  margin: 5rem 0 3rem;
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+  background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.pricing-cards {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 1;
+}
+
+.pricing-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 2rem;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.pricing-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-card h3 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-weight: 300;
+}
+
+.price {
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #125AFF;
+  margin-bottom: 1rem;
+}
+
+.price span {
+  font-size: 1rem;
+  font-weight: 300;
+  color: #666;
+}
+
+.pricing-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.get-started-btn {
+  background-color: #125AFF;
+  color: white;
+  border: none;
+  padding: 0.8rem 0;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  width: 100%;
+  font-weight: 300;
+  margin-bottom: 1.5rem;
+}
+
+.get-started-btn:hover {
+  background-color: #0044ff;
+}
+
+.pricing-features h4 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 1rem;
+  font-weight: 300;
+}
+
+.pricing-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pricing-features li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.8rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.pricing-features li img {
+  width: 16px;
+  height: 16px;
+  margin-right: 0.8rem;
+}
+
+.pricing-features .included {
+  color: #333;
+}
+
+.pricing-features .not-included {
+  color: #999;
+}
+
+.pricing-features .not-included img {
+  opacity: 0.7;
+}
+
+/* Testimonials Section */
+.testimonials {
+  padding: 7rem 4rem 5rem;
+  text-align: center;
+  background-color: transparent;
+  position: relative;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.testimonials::before {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  left: 0;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50% 50% 0 0;
+}
+
+.testimonials::after {
+  content: "";
+  position: absolute;
+  bottom: -150px;
+  right: 0;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 50% 50% 0 0;
+}
+
+.testimonials h2 {
+  font-size: 3rem;
+  margin: 5rem 0 3rem;
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+  background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.testimonials-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+.testimonial-row {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.testimonial-card {
+  background-color: white;
+  border-radius: 10px;
+  padding: 1.5rem;
+  width: 300px;
+  text-align: left;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(5px);
+}
+
+.testimonial-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative;
+}
+
+.testimonial-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #cccccc;
+  margin-right: 1rem;
+  flex-shrink: 0;
+}
+
+.testimonial-author {
+  flex-grow: 1;
+}
+
+.testimonial-author h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  color: #333;
+  font-weight: 400;
+}
+
+.testimonial-author p {
+  font-size: 0.9rem;
+  margin: 0;
+  color: #666;
+  font-weight: 300;
+}
+
+.quote-icon {
+  font-size: 2rem;
+  color: #125AFF;
+  line-height: 1;
+  margin-left: auto;
+}
+
+.testimonial-text {
+  font-size: 0.9rem;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+  font-weight: 300;
+}
+
+/* Try Now Page */
+.try-now-container {
+    width: 100%;
+    background: linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 30%, #125AFF 70%, #125AFF 100%);
+}
+
+.success-stories {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rem 4rem;
+    max-width: 100%;
+    margin: 0;
+    gap: 2rem;
+    position: relative;
+}
+
+.success-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.success-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.success-content p {
+    margin-bottom: 1.5rem;
+    color: #333;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.success-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.success-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.price-btn {
+    display: inline-block;
+    background-color: #125AFF;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 300;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+}
+
+.price-btn:hover {
+    background-color: #0044ff;
+}
+
+.student-profile {
+    padding: 3rem 4rem 5rem;
+}
+
+.profile-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.conversation-title {
+    padding: 1rem;
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 300;
+    color: #666;
+    border-bottom: 1px solid #eee;
+}
+
+.profile-content {
+    padding: 2rem;
+}
+
+.profile-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    font-weight: 400;
+    color: #333;
+}
+
+.education-section, .activities-section {
+    margin-bottom: 2rem;
+}
+
+.education-section h3, .activities-section h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.education-section p, .activities-section p {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.education-section ul, .activities-section ul {
+    list-style-type: disc;
+    padding-left: 1.5rem;
+    margin-top: 0.5rem;
+}
+
+.education-section li, .activities-section li {
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.generate-btn {
+    display: inline-block;
+    background-color: #125AFF;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 300;
+    margin-top: 1rem;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.generate-btn:hover {
+    background-color: #0044ff;
+}
+
+/* Register Page */
+.register-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+}
+
+/* Individual Register Page */
+.register-form-page {
+    max-width: 100%;
+    min-height: 100vh;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.register-form-page .register-form-container {
+    max-width: 600px;
+    width: 100%;
+    background: white;
+    border-radius: 10px;
+    padding: 3rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.back-button a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    text-decoration: none;
+    margin-bottom: 2rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-button a:hover {
+    color: #125AFF;
+}
+
+.register-form-page h1 {
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #333;
+}
+
+.individual-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.individual-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #333;
+    font-weight: 500;
+}
+
+.individual-form input[type="text"],
+.individual-form input[type="email"],
+.individual-form input[type="password"] {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.individual-form input:focus {
+    border-color: #125AFF;
+    outline: none;
+}
+
+.password-input {
+    position: relative;
+}
+
+.show-password {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.form-group.checkbox {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.form-group.checkbox input {
+    width: auto;
+}
+
+.form-group.checkbox label {
+    margin-bottom: 0;
+    font-weight: normal;
+}
+
+.register-button {
+    width: 100%;
+    padding: 1rem;
+    background-color: #125AFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.register-button:hover {
+    background-color: #0a4bdf;
+}
+
+.forgot-password {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.forgot-password a {
+    color: #125AFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-left {
+    flex: 1;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    background-image: url('assets/building-bg.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+}
+
+.register-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.register-logo a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+.register-logo img {
+    height: 40px;
+}
+
+.register-logo span {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.testimonial-quote {
+    position: absolute;
+    padding: 2rem 0;
+    max-width: 80%;
+    bottom: 15%;
+    left: 2rem;
+}
+
+.quote-mark {
+    font-size: 3rem;
+    line-height: 1;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+}
+
+.open-quote {
+    top: -1rem;
+    left: -1rem;
+}
+
+.close-quote {
+    bottom: -1rem;
+    right: 0;
+}
+
+.quote-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: white;
+}
+
+.quote-author {
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+}
+
+.register-right {
+    flex: 1.2;
+    padding: 2rem;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+}
+
+.signin-link {
+    text-align: right;
+    margin-bottom: 4rem;
+}
+
+.signin-link a {
+    color: #125AFF;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.register-form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.register-form-container h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #333;
+    font-weight: 600;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    -webkit-text-fill-color: initial;
+}
+
+.form-subtitle {
+    color: #666;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.account-options {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.account-option {
+    display: flex;
+    align-items: center;
+    padding: 1.5rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+}
+
+.account-option:hover {
+    border-color: #125AFF;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.option-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #e6f0ff;
+    border-radius: 8px;
+    margin-right: 1rem;
+    color: #125AFF;
+}
+
+.individual .option-icon {
+    background-color: #e6f0ff;
+    color: #125AFF;
+}
+
+.business .option-icon {
+    background-color: #f0f0f0;
+    color: #666;
+}
+
+.option-content {
+    flex: 1;
+}
+
+.option-content h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+    color: #333;
+}
+
+.option-content p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 0;
+}
+
+.option-arrow {
+    color: #125AFF;
+}
+
+.register-footer {
+    background: #0c1f4a;
+    color: white;
+    padding: 3rem 4rem 1.5rem;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo img {
+    height: 30px;
+}
+
+.footer-address {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.footer-links {
+    display: flex;
+    gap: 3rem;
+}
+
+.footer-links-column h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.footer-links-column a {
+    display: block;
+    color: white;
+    opacity: 0.8;
+    text-decoration: none;
+    margin-bottom: 0.5rem;
+    font-size: 0.9rem;
+    transition: opacity 0.3s;
+}
+
+.footer-links-column a:hover {
+    opacity: 1;
+}
+
+.footer-copyright {
+    text-align: center;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* About Page */
+.about-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5rem 4rem;
+    max-width: 100%;
+    margin: 0;
+    gap: 2rem;
+    position: relative;
+    background: transparent;
+}
+
+.about-content {
+    flex: 1;
+    max-width: 50%;
+}
+
+.about-content h1 {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-content p {
+    margin-bottom: 1.5rem;
+    color: #1a1a1a;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.about-image {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.ask-anything {
+    text-align: center;
+    padding: 4rem;
+    background-color: #f5f9ff;
+}
+
+.ask-anything h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    background: linear-gradient(90deg, #49BBF0 0%, #125AFF 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.ask-anything p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.ask-form {
+    display: flex;
+    max-width: 600px;
+    margin: 0 auto;
+    gap: 1rem;
+}
+
+.ask-form input {
+    flex: 1;
+    padding: 1rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #f5f5f5;
+}
+
+.ask-btn {
+    padding: 1rem 2rem;
+    background-color: #125AFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.ask-btn:hover {
+    background-color: #0044ff;
+}
+
+/* Footer */
+footer {
+  background: #160E4B;
+  color: white;
+  padding: 4rem 4rem 2rem;
+  font-family: 'Mulish', 'Hiragino Kaku Gothic Std', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.footer-logo-section {
+  margin-right: 2rem;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.footer-logo img {
+  height: 40px;
+  margin-right: 0.5rem;
+}
+
+.footer-logo span {
+  font-size: 1.8rem;
+  font-weight: 700;
+  background: linear-gradient(to right, #49BBF0, #125AFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.footer-address {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  margin-top: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 4rem;
+}
+
+.footer-links-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-links-column a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+.footer-links-column a:hover {
+  color: #49BBF0;
+}
+
+.footer-copyright {
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 2rem;
+}
+
+.footer-copyright p {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 300;
+  margin: 0;
+}
+
+.footer-cols {
+  display: flex;
+  justify-content: space-around;
+}
+
+.footer-cols div {
+  line-height: 2;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+}
+
+footer small {
+  display: block;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 12px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.alert-danger {
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+
+.alert-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}

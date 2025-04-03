@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - AISPIRE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
+            <span>AISPIRE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}">Home</a>
+            <a href="{{ url_for('about') }}" class="active">About</a>
+            <a href="{{ url_for('index') }}#pricing">Pricing</a>
+            <a href="{{ url_for('register') }}" class="register-btn">Register</a>
+        </div>
+    </nav>
+
+    <main class="about-section">
+        <div class="about-content">
+            <h1>About Us</h1>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consectetur justo quis euismod vehicula. Quisque diam dui, imperdiet et hendrerit in, accumsan tempus erat.
+            </p>
+            <p>
+                Nullam ornare blandit urna, eu pulvinar elit faucibus eget. Sed justo mauris, ultricies eu urna at, gravida commodo mauris. Quisque ac felis ac sapien dictum gravida aliquam ac purus. Donec sit amet ex vel ex sollicitudin posuere at et metus. Duis sodales ligula nisi, molestie lacinia ex rhoncus vel.
+            </p>
+            <p>
+                Nullam ornare blandit urna, eu pulvinar elit faucibus eget. Sed justo mauris, ultricies eu urna at, gravida commodo mauris. Quisque ac felis ac sapien dictum gravida aliquam ac purus. Donec sit amet ex vel ex sollicitudin posuere at et metus. Duis sodales ligula nisi, molestie lacinia ex rhoncus vel.
+            </p>
+        </div>
+        <div class="about-image">
+            <img src="{{ url_for('static', filename='assets/Shape Mask 9.png') }}" alt="College Building">
+        </div>
+    </main>
+
+    <section class="ask-anything">
+        <h2>Ask Anything</h2>
+        <p>Feel free to reach out to us regarding any question you have for our product!</p>
+        <div class="ask-form">
+            <input type="text" placeholder="Enter your question...">
+            <button class="ask-btn">Ask Anything</button>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE Logo">
+                    <span>AISPIRE</span>
+                </div>
+                <p class="footer-address">8989 Picar Oddi Road, Port New York City, New York</p>
+            </div>
+            <div class="footer-links">
+                <div class="footer-links-column">
+                    <h3>Home</h3>
+                    <a href="{{ url_for('index') }}">Home</a>
+                    <a href="{{ url_for('about') }}">About</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                </div>
+                <div class="footer-links-column">
+                    <h3>Services</h3>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+                <div class="footer-links-column">
+                    <h3>Connect With Us</h3>
+                </div>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            <p>© AISPIRE. All right reserved. Designed by AISPIRE</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

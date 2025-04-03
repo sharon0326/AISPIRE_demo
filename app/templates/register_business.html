@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Business Account - AISPIRE</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="register-form-page">
+        <div class="register-form-container">
+            <div class="back-button">
+                <a href="{{ url_for('register') }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                    Back
+                </a>
+            </div>
+
+            <h1>Register Business Account!</h1>
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        {% if category != 'success' or not request.args.get('redirected') %}
+                            <div class="alert alert-{{ category }}">
+                                {{ message }}
+                            </div>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <form class="individual-form" action="{{ url_for('register_business') }}" method="POST">
+                <div class="form-group">
+                    <label for="company">Company name*</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="fullname">Your fullname*</label>
+                    <input type="text" id="fullname" name="fullname" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email address*</label>
+                    <input type="email" id="email" name="email" placeholder="Enter email address" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Create password*</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" placeholder="Enter password" required>
+                        <button type="button" class="show-password">Show</button>
+                    </div>
+                </div>
+
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="terms" name="terms" required>
+                    <label for="terms">I agree to terms & conditions</label>
+                </div>
+
+                <button type="submit" class="register-button">Register Account</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+</html>

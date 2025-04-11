@@ -1,4 +1,8 @@
 /* General Reset */
+html {
+    scroll-behavior: smooth;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -407,6 +411,9 @@ h1 {
   width: 100%;
   font-weight: 300;
   margin-bottom: 1.5rem;
+  display: inline-block;           /* Make it behave like a button */
+  text-align: center;              /* Center the text */
+  text-decoration: none;
 }
 
 .get-started-btn:hover {

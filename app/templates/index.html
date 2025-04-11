@@ -1,24 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AISPIRE - AI-Driven Essays for Top US Colleges</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="logo">
-            <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
-            <span>AISPIRE</span>
-        </div>
-        <div class="nav-links">
-            <a href="{{ url_for('index') }}" class="active">Home</a>
-            <a href="{{ url_for('about') }}">About</a>
-            <a href="#pricing">Pricing</a>
-            <a href="{{ url_for('register') }}" class="register-btn">Register</a>
-        </div>
-    </nav>
+{% extends "layout.html" %}
+
+{% block content %}
 
     <main class="hero">
         <div class="hero-content">
@@ -72,61 +54,54 @@
     </section>
 
     <section id="pricing" class="pricing">
-        <h2>Choose Your Plan</h2>
-        <div class="pricing-cards">
+        <h2 class="payment-title">Choose Your Plan</h2>
+
+        <div class="pricing-cards payment-cards">
             <div class="pricing-card">
                 <h3>Basic</h3>
-                <div class="price">$5<span>/month</span></div>
-                <p>A budget-friendly option for individuals and small businesses.</p>
-                <button class="get-started-btn">Get Started</button>
+                <div class="price">$0<span>/month</span></div>
+                <p>Best For Quick Ideas & testing of your writing</p>
+                <a href="{{ url_for('payment_process', plan='basic') }}" class="get-started-btn">Get Started</a>
+
                 <div class="pricing-features">
                     <h4>Features</h4>
                     <ul>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Idea Generation</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Outline Support</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Polish (Editing)</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">3 Chat Access</li>
                     </ul>
                 </div>
             </div>
-            
-            <div class="pricing-card">
+
+            <div class="pricing-card highlighted">
                 <h3>Advance</h3>
-                <div class="price">$5<span>/month</span></div>
-                <p>A budget-friendly option for individuals and small businesses.</p>
-                <button class="get-started-btn">Get Started</button>
+                <div class="price">$59.9<span>/month</span></div>
+                <p>Best For Regular writing and planning needs</p>
+                <a href="{{ url_for('payment_process', plan='advance') }}" class="get-started-btn">Get Started</a>
                 <div class="pricing-features">
                     <h4>Features</h4>
                     <ul>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Idea Generation</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Outline Support</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Chat Access</li>
+                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Polish (Editing)</li>
                     </ul>
                 </div>
             </div>
-            
+
             <div class="pricing-card">
                 <h3>Professional</h3>
-                <div class="price">$5<span>/month</span></div>
-                <p>A budget-friendly option for individuals and small businesses.</p>
-                <button class="get-started-btn">Get Started</button>
+                <div class="price">$89.9<span>/month</span></div>
+                <p>Best For High-quality applications writing</p>
+                <a href="{{ url_for('payment_process', plan='professional') }}" class="get-started-btn">Get Started</a>
                 <div class="pricing-features">
                     <h4>Features</h4>
                     <ul>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">10 GB storage</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Basic file collaboration</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Mobile app access</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">File synchronization across devices</li>
-                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Support for common file types</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Automatic file backup</li>
-                        <li class="not-included"><img src="{{ url_for('static', filename='assets/x.png') }}" alt="Not Included">Advanced security features</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Idea Generation</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Outline Support</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Ivy-Level Polish (Editing)</li>
+                        <li class="included"><img src="{{ url_for('static', filename='assets/check_circle.png') }}" alt="Included">Unlimited Chat Access</li>
                     </ul>
                 </div>
             </div>
@@ -211,39 +186,4 @@
             </div>
         </div>
     </section>
-
-    <footer>
-        <div class="footer-container">
-            <div class="footer-logo-section">
-                <div class="footer-logo">
-                    <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
-                    <span>AISPIRE</span>
-                </div>
-                <p class="footer-address">88/89 Peter Odili Road, Port<br>New York City, New York.</p>
-            </div>
-            
-            <div class="footer-links">
-                <div class="footer-links-column">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
-                    <a href="#">Register</a>
-                </div>
-                
-                <div class="footer-links-column">
-                    <a href="#">Services</a>
-                    <a href="#">Contact</a>
-                    <a href="#">Privacy Policy</a>
-                </div>
-                
-                <div class="footer-links-column">
-                    <a href="#">Connect With Us</a>
-                </div>
-            </div>
-        </div>
-        
-        <div class="footer-copyright">
-            <p>© AISPIRE. All right reserved. Designed by AISPIRE</p>
-        </div>
-    </footer>
-</body>
-</html>
+{% endblock %}

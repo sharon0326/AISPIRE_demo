@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from flask import render_template, request, session, url_for, redirect, flash
+from flask import render_template, request, session, url_for, redirect, flash, Flask, jsonify
 from app import app
 from app.forms import LoginForm, RegistrationForm
 from app.generation import generate_montage_outlines, generate_narrative_outlines, generate_full_essay
@@ -8,8 +8,7 @@ from flask_login import current_user, login_user,logout_user,login_required
 import sqlalchemy as sa
 from app import db
 from app.models import User, EssayHistory
-
-
+import paypalrestsdk, stripe
 @app.route('/')
 @app.route('/index')
 def index():
@@ -248,3 +247,89 @@ def generate_essay():
     session.pop('essay_data', None)
 
     return render_template('gen_essay.html', essay=essay)
+
+
+paypalrestsdk.configure({
+    "mode": "sandbox",  # or "live" for production
+    "client_id": "AbX1dcX5EthGTUw7nIumpSLhr9_bX2rPyRPwiFeOLZOW1sy4A7e1Xc2g0NFJIodvAw3sXoiaBA3-pHSW",  # Replace with your client ID
+    "client_secret": "EN0uBFKGKTKBZnQ19N5sVRXWh9PAVTgaAUynnOyxqW4EQlma-fNRYN0uZkzJalNle9ZLmJKU9tJdaRQS"  # Replace with your secret key
+})
+stripe.api_key = "sk_test_51Qc9VtBbLu4XKMtitlW66ih7dgeEZmyv9oRklKLFX9pIhoQLwoKXFip8HAGqPafKcPmDYEWZYzlmULxFPWu7jnXa00HFYfmnlN"
+
+#Paypal route
+@app.route('/payment_process', methods=['GET', 'POST'])
+def payment_process():
+    if request.method == 'POST':
+        # Get the payment details
+        amount = request.form.get('amount')# This could be from the selected plan, for example
+        print(amount)
+        # Create PayPal payment
+        payment = paypalrestsdk.Payment({
+            "intent": "sale",
+            "payer": {
+                "payment_method": "paypal"
+            },
+            "transactions": [{
+                "amount": {
+                    "total": amount,
+                    "currency": "USD"
+                },
+                "description": "Payment for AI-Driven Essays"
+            }],
+            "redirect_urls": {
+                "return_url": url_for('payment_success', _external=True),
+                "cancel_url": url_for('payment_cancel', _external=True)
+            }
+        })
+
+        # Create payment
+        if payment.create():
+            for link in payment.links:
+                if link.rel == "approval_url":
+                    approval_url = link.href
+                    return redirect(approval_url)  # Redirect user to PayPal for approval
+        else:
+            return "Error occurred while creating PayPal payment"
+    amount = request.args.get('amount', '10.00')
+    return render_template('payment_process.html')  # Return the payment page with form
+
+@app.route('/payment/success')
+def payment_success():
+    # After the user approves the payment, PayPal redirects them here
+    payment_id = request.args.get('paymentId')
+    payer_id = request.args.get('PayerID')
+
+    payment = paypalrestsdk.Payment.find(payment_id)
+
+    if payment.execute({"payer_id": payer_id}):
+        return "Payment successful!"  # You can redirect the user to a success page
+    else:
+        return "Payment failed"
+
+@app.route('/payment/cancel')
+def payment_cancel():
+    return "Payment was cancelled"
+
+#Stripe route
+@app.route('/create-payment-intent', methods=['POST'])
+def create_payment():
+    try:
+        data = request.get_json()
+        amount = int(float(data['amount']) * 100)  # Convert dollars to cents
+
+        intent = stripe.PaymentIntent.create(
+            amount=amount,
+            currency='usd',
+            automatic_payment_methods={'enabled': True},
+        )
+
+        return jsonify({'clientSecret': intent.client_secret})
+    except Exception as e:
+        return jsonify(error=str(e)), 403
+
+
+
+
+
+
+

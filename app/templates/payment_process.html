@@ -1,0 +1,365 @@
+{% extends "layout.html" %}
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='payment.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <div class="payment-process-container">
+        <div class="plan-details" id="plan-details">
+            <div class="plan-content">
+                <h2 class="plan-title" id="plan-name">Basic</h2>
+                <div class="plan-price" id="plan-price">$0<span>/month</span></div>
+                <p class="plan-description" id="plan-description">Best For Quick Ideas & testing</p>
+                
+                <h3 class="features-title">Features</h3>
+                <ul class="feature-list" id="feature-list">
+                    <!-- Features will be populated by JavaScript -->
+                </ul>
+            </div>
+        </div>
+        
+        <!-- 支付表单部分 - 后端集成点 -->
+        <!-- 注意: 当用户选择免费计划时，此表单将被隐藏，直接跳转到注册页面 -->
+        <div class="payment-form">
+            <!-- 邮箱字段 - 用于账户识别和通信 -->
+            <!-- 后端集成点: 验证邮箱格式并检查是否已存在 -->
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="your@email.com" required>
+            </div>
+            
+            <!-- 信用卡信息字段 - 支付处理集成点 -->
+            <!-- 后端集成点: 集成支付处理API (如Stripe, Braintree等) -->
+            <div class="form-group">
+                <label for="card-number">Card information</label>
+                <input type="text" id="card-number" placeholder="1234 1234 1234 1234" required>
+                <!-- 支持的信用卡类型图标 -->
+                <div class="card-icons">
+                    <img src="{{ url_for('static', filename='assets/visa.svg') }}" alt="Visa">
+                    <img src="{{ url_for('static', filename='assets/mastercard.svg') }}" alt="Mastercard">
+                    <img src="{{ url_for('static', filename='assets/amex.svg') }}" alt="American Express">
+                    <img src="{{ url_for('static', filename='assets/discover.svg') }}" alt="Discover">
+                </div>
+            </div>
+            
+            <!-- 到期日期和CVC码 - 并排布局 -->
+            <!-- 后端集成点: 验证日期格式和CVC码长度 -->
+            <div class="card-row">
+                <div class="form-group">
+                    <label for="expiry">MM / YY</label>
+                    <input type="text" id="expiry" placeholder="MM / YY" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" placeholder="CVC" required>
+                </div>
+            </div>
+            
+            <!-- 持卡人姓名 - 支付验证所需 -->
+            <!-- 后端集成点: 验证姓名与账户信息匹配 -->
+            <div class="form-group">
+                <label for="cardholder">Cardholder name</label>
+                <input type="text" id="cardholder" placeholder="Full name on card" required>
+            </div>
+            
+            <!-- 国家或地区选择 - 可由后端动态生成国家列表 -->
+            <!-- 后端集成点: 从数据库加载支持的国家列表 -->
+            <div class="form-group">
+                <label for="country">Country or region</label>
+                <div class="country-select-container">
+                    <select id="country" required class="custom-select">
+                        <option value="US">United States</option>
+                        <option value="CA">Canada</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="AU">Australia</option>
+                        <option value="DE">Germany</option>
+                        <option value="FR">France</option>
+                    </select>
+                </div>
+            </div>
+            
+            <!-- 邮编字段 - 支付验证所需 -->
+            <!-- 后端集成点: 根据所选国家验证邮编格式 -->
+            <div class="form-group">
+                <label for="zip">ZIP</label>
+                <input type="text" id="zip" placeholder="ZIP" required>
+            </div>
+            
+            <!-- 主要支付按钮 - 后端集成点 -->
+            <!-- 后端集成点: 处理支付提交，连接到支付网关API -->
+            <form id="stripe-form">
+                <input type="hidden" id="stripe-amount" value="11.00">
+                <div id="card-element"><!-- Stripe Card Input --></div>
+                <button id="stripe-button" type="submit">Pay with Stripe</button>
+                <div id="stripe-message"></div>
+            </form>
+            <!-- PayPal支付选项 - 后端集成点 -->
+            <!-- 后端集成点: 集成PayPal API处理 -->
+            <form action="{{ url_for('payment_process') }}" method="POST" id="paypal-form">
+                <input type="hidden" name="amount" id="paypal-amount">
+                <button type="submit" class="paypal-button">
+                    <img src="{{ url_for('static', filename='assets/paypal.svg') }}" alt="PayPal" height="30">
+                </button>
+            </form>
+
+            
+            <!-- 服务条款和隐私政策链接 - 后端需提供实际页面链接 -->
+            <!-- 后端集成点: 更新链接到实际的条款和隐私政策页面 -->
+            <p class="terms-text">
+                By clicking Pay, you agree to the <a href="#">Link Terms</a> and <a href="#">Privacy Policy</a>.
+            </p>
+        </div>
+    </div>
+
+
+
+<script>
+    /**
+     * 支付处理页面脚本
+     *
+     * 该脚本处理以下功能：
+     * 1. 从URL参数获取选择的计划类型
+     * 2. 根据计划类型显示相应的计划详情
+     * 3. 对于免费计划，隐藏支付表单并显示注册按钮
+     * 4. 动态生成计划功能列表
+     * 5. 根据计划类型设置不同的背景颜色
+     */
+
+    // 从URL参数获取选择的计划类型，默认为basic
+    const urlParams = new URLSearchParams(window.location.search);
+    const planType = urlParams.get('plan') || 'basic';
+
+    /**
+     * 计划数据配置
+     * 后端集成点：此数据可由后端动态生成，从数据库获取最新的计划信息
+     */
+    const plans = {
+        basic: {
+            name: 'Basic',
+            price: '$0',
+            description: 'Best For Quick Ideas & testing',
+            features: [
+                { name: 'Idea Generation', included: false },
+                { name: 'Outline Support', included: false },
+                { name: 'Polish (Editing)', included: false },
+                { name: 'Chat Access', included: true, limit: '3' }
+            ]
+        },
+        advance: {
+            name: 'Advance',
+            price: '$59.9',
+            description: 'Best For Regular writing and planning needs',
+            features: [
+                { name: 'Idea Generation', included: true, unlimited: true },
+                { name: 'Outline Support', included: true, unlimited: true },
+                { name: 'Chat Access', included: true, unlimited: true },
+                { name: 'Polish (Editing)', included: false }
+            ]
+        },
+        professional: {
+            name: 'Professional',
+            price: '$89.9',
+            description: 'Best For High-quality applications writing',
+            features: [
+                { name: 'Idea Generation', included: true, unlimited: true },
+                { name: 'Outline Support', included: true, unlimited: true },
+                { name: 'Polish (Editing)', included: true, ivyLevel: true },
+                { name: 'Chat Access', included: true, unlimited: true }
+            ]
+        }
+    };
+
+    // 获取选择的计划，如果无效则默认为basic
+    const selectedPlan = plans[planType.toLowerCase()] || plans.basic;
+
+    // 设置计划详情到页面元素
+    document.getElementById('plan-name').textContent = selectedPlan.name;
+    document.getElementById('plan-price').innerHTML = `${selectedPlan.price}<span>/month</span>`;
+    document.getElementById('plan-description').textContent = selectedPlan.description;
+
+    /**
+     * 免费计划特殊处理
+     * 对于免费计划，隐藏支付表单，直接显示注册按钮
+     */
+    if (selectedPlan.price === '$0') {
+        // 隐藏支付表单
+        document.querySelector('.payment-form').style.display = 'none';
+
+        // 获取计划详情元素
+        const planDetails = document.getElementById('plan-details');
+
+        // 添加空白间隔
+        const spacer = document.createElement('div');
+        spacer.style.height = '30px';
+        planDetails.appendChild(spacer);
+
+        // 创建注册按钮容器
+        const registerButtonContainer = document.createElement('div');
+        registerButtonContainer.style.textAlign = 'center';
+        registerButtonContainer.style.marginTop = '20px';
+        registerButtonContainer.style.marginBottom = '20px';
+
+        // 创建注册按钮
+        const registerButton = document.createElement('a');
+        registerButton.href = 'register';
+        registerButton.className = 'get-started-btn';
+        registerButton.textContent = 'Get Started For Free';
+        registerButton.style.display = 'inline-block';
+        registerButton.style.padding = '15px 40px';
+        registerButton.style.background = 'linear-gradient(90deg, #49BBF0 0%, #125AFF 100%)';
+        registerButton.style.color = 'white';
+        registerButton.style.borderRadius = '8px';
+        registerButton.style.textDecoration = 'none';
+        registerButton.style.fontWeight = '600';
+        registerButton.style.boxShadow = '0 4px 15px rgba(18, 90, 255, 0.3)';
+        registerButton.style.transition = 'all 0.3s ease';
+        registerButton.style.fontSize = '1.1rem';
+        registerButton.style.width = 'auto';
+
+        // 添加按钮悬停效果
+        registerButton.onmouseover = function() {
+            this.style.transform = 'translateY(-3px)';
+            this.style.boxShadow = '0 8px 20px rgba(18, 90, 255, 0.5)';
+        };
+        registerButton.onmouseout = function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = '0 4px 15px rgba(18, 90, 255, 0.3)';
+        };
+
+        // 将按钮添加到容器并添加到页面
+        registerButtonContainer.appendChild(registerButton);
+        planDetails.appendChild(registerButtonContainer);
+    }
+
+    /**
+     * 功能列表生成
+     * 根据计划配置动态生成功能列表项
+     */
+    const featureList = document.getElementById('feature-list');
+    featureList.innerHTML = '';
+
+    /**
+     * 创建功能列表项
+     * @param {Object} feature - 功能配置对象
+     * @param {string} feature.name - 功能名称
+     * @param {boolean} feature.included - 是否包含此功能
+     * @param {boolean} [feature.unlimited] - 是否无限制使用
+     * @param {boolean} [feature.ivyLevel] - 是否为高级(Ivy-Level)版本
+     * @param {string} [feature.limit] - 使用限制数量
+     * @returns {HTMLElement} 列表项元素
+     */
+    function createFeatureItem(feature) {
+        const li = document.createElement('li');
+
+        if (feature.included) {
+            // 包含的功能 - 显示勾选图标
+            li.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+                    <path d="M8 12L11 15L16 9" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            `;
+
+            // 根据功能类型添加不同的描述
+            if (feature.unlimited) {
+                li.innerHTML += `Unlimited ${feature.name}`;
+            } else if (feature.ivyLevel) {
+                li.innerHTML += `Ivy-Level ${feature.name}`;
+            } else if (feature.limit) {
+                li.innerHTML += `${feature.limit} ${feature.name}`;
+            } else {
+                li.innerHTML += feature.name;
+            }
+        } else {
+            // 不包含的功能 - 显示交叉图标
+            li.innerHTML = `
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" fill="white" fill-opacity="0.2"/>
+                    <path d="M15 9L9 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M9 9L15 15" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+                ${feature.name}
+            `;
+            li.style.opacity = '0.7';
+        }
+
+        return li;
+    }
+
+    // 为每个功能创建列表项并添加到列表中
+    selectedPlan.features.forEach(feature => {
+        featureList.appendChild(createFeatureItem(feature));
+    });
+
+    /**
+     * 设置计划卡片背景颜色
+     * 后端集成点：可从数据库获取每个计划的样式配置
+     */
+    const planDetails = document.getElementById('plan-details');
+    if (planType.toLowerCase() === 'advance') {
+        planDetails.style.background = 'linear-gradient(135deg, #49BBF0, #125AFF)';
+    } else if (planType.toLowerCase() === 'professional') {
+        planDetails.style.background = 'linear-gradient(135deg, #3B82F6, #1E40AF)';
+    } else {
+        planDetails.style.background = 'linear-gradient(135deg, #60A5FA, #2563EB)';
+    }
+
+    /**
+     * 后端集成说明：
+     * 1. 支付处理：实现支付按钮点击事件处理程序，连接到支付网关
+     * 2. 表单验证：添加表单验证逻辑，确保所有必填字段都已填写且格式正确
+     * 3. 支付成功后：重定向到注册页面或账户创建页面
+     * 4. 错误处理：添加错误处理逻辑，显示支付失败消息
+     */
+// 提取用户点击Paypal支付
+document.querySelector('.paypal-button').addEventListener('click', function() {
+const priceText = document.getElementById('plan-price').textContent;
+    document.getElementById('paypal-amount').value = priceText.replace('$', '').replace('/month', '').trim();
+});
+
+</script>
+
+<!--Stripe handle-->
+<script src="https://js.stripe.com/v3/"></script>
+  <script>
+        const stripe = Stripe("pk_test_51Qc9VtBbLu4XKMtilV67WcRMA4TFTdEpBO0dI8QN2ofcOcIQK9L6oqq7hUmNzq5C8rJRO3amOkCHuN9KSJ3ectXv00FRqSVNGK");  // Replace with your real publishable key
+        const elements = stripe.elements();
+        const card = elements.create("card");
+        card.mount("#card-element");
+
+        const form = document.getElementById("stripe-form");
+        const stripeMessage = document.getElementById("stripe-message");
+
+        form.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            document.getElementById("stripe-amount").value = selectedPlan.price.replace('$', '');
+            const amount = document.getElementById("stripe-amount").value;
+
+            const response = await fetch("/create-payment-intent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount: amount })
+            });
+
+            const data = await response.json();
+
+            if (data.clientSecret) {
+                const result = await stripe.confirmCardPayment(data.clientSecret, {
+                    payment_method: {
+                        card: card
+                    }
+                });
+
+                if (result.error) {
+                    stripeMessage.innerText = "Stripe payment failed: " + result.error.message;
+                } else if (result.paymentIntent.status === 'succeeded') {
+                    stripeMessage.innerText = "Stripe payment successful!";
+                }
+            } else {
+                stripeMessage.innerText = "Error creating payment intent.";
+            }
+        });
+    </script>
+
+
+{% endblock %}

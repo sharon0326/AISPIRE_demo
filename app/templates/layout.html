@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AISPIRE - AI-Driven Essays for Top US Colleges</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+
+</head>
+<body>
+
+    {% block navbar %}
+    <nav class="navbar">
+        <div class="logo">
+            <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
+            <span>AISPIRE</span>
+        </div>
+        <div class="nav-links">
+            <a href="{{ url_for('index') }}" class="active">Home</a>
+            <a href="{{ url_for('about') }}">About</a>
+             <a href="{{ url_for('index') }}#pricing">Pricing</a>
+            <a href="{{ url_for('register') }}" class="register-btn">Register</a>
+        </div>
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+
+    {# Template inserted here #}
+
+    {% endblock %}
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo-section">
+                <div class="footer-logo">
+                    <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE">
+                    <span>AISPIRE</span>
+                </div>
+                <p class="footer-address">88/89 Peter Odili Road, Port<br>New York City, New York.</p>
+            </div>
+
+            <div class="footer-links">
+                <div class="footer-links-column">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                    <a href="#">Register</a>
+                </div>
+
+                <div class="footer-links-column">
+                    <a href="#">Services</a>
+                    <a href="#">Contact</a>
+                    <a href="#">Privacy Policy</a>
+                </div>
+
+                <div class="footer-links-column">
+                    <a href="#">Connect With Us</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-copyright">
+            <p>© AISPIRE. All right reserved. Designed by AISPIRE</p>
+        </div>
+    </footer>
+</body>
+</html>

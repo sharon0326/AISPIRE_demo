@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Register - AISPIRE</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
+{% extends "layout.html" %}
+{% block navbar %}{% endblock %}
+{% block content %}
+
 <body>
     <div class="register-container">
         <div class="register-left">
@@ -61,39 +57,4 @@
         </div>
     </div>
 
-    <footer class="register-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <a href="{{ url_for('index') }}">
-                    <img src="{{ url_for('static', filename='assets/logo.svg') }}" alt="AISPIRE Logo">
-                    <span>AISPIRE</span>
-                </a>
-            </div>
-            <div class="footer-address">
-                <p>88/89 Peter Odili Road, Port New York City, New York.</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-links-column">
-                    <h3>Home</h3>
-                    <a href="{{ url_for('index') }}">Home</a>
-                    <a href="{{ url_for('about') }}">About</a>
-                    <a href="{{ url_for('register') }}">Register</a>
-                </div>
-                <div class="footer-links-column">
-                    <h3>Services</h3>
-                    <!--a href="{{ 'contact' }}">Contact</a -->
-                    <!--a href="{{ 'privacy_policy' }}">Privacy Policy</a-->
-                </div>
-                <div class="footer-links-column">
-                    <h3>Connect With Us</h3>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>© AISPIRE. All right reserved. Designed by AISPIRE</p>
-        </div>
-    </footer>
-
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
-</body>
-</html>
+{% endblock %}

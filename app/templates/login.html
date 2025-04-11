@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - AISPIRE</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
-</head>
-<body>
+{% extends "layout.html" %}
+{% block navbar %}{% endblock %} {# This hides the navbar #}
+{% block content %}
     <div class="register-container">
         <div class="register-left">
             <div class="register-logo">
@@ -71,33 +65,4 @@
             </div>
         </div>
     </div>
-
-    <footer class="register-footer">
-        <div class="footer-container">
-            <div class="footer-logo">
-                <a href="{{ url_for('index') }}">
-                    <img src="{{ url_for('static', filename='assets/logo2.svg') }}" alt="AISPIRE Logo">
-                    <span>AISPIRE</span>
-                </a>
-            </div>
-            <div class="footer-address">
-                <p>88/89 Peter Odili Road, Port New York City, New York.</p>
-            </div>
-            <div class="footer-links">
-                <div class="footer-links-column">
-                    <h3>Company</h3>
-                    <ul>
-                        <li><a href="{{ url_for('about') }}">About Us</a></li>
-                        <li><a >Contact Us</a></li>
-                        <li><a >Privacy Policy</a></li>
-                        <li><a >Terms of Service</a></li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <div class="footer-copyright">
-            <p>&copy; 2023 AISPIRE. All rights reserved.</p>
-        </div>
-    </footer>
-</body>
-</html>
+{% endblock %}

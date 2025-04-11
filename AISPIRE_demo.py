@@ -1,7 +1,7 @@
 from app import app, models
 
 if __name__ == '__main__':
-    #app.run(debug=True)
+    app.run(debug=True)
 
 
     # clear all tables in database
